@@ -1,0 +1,11 @@
+*Visual Studio (2013)*
+Regex search includes including files starting with 'ipp'- #include\s["<]ipp
+
+*Dumpbin*
+List dependencies of a DLL - $ dumpbin /dependents foo.dll
+
+*Intel Performance Primitives library*
+Build a C++ project with IPP library (v.2019) -
+  a. Right click project > Properties
+  b. Goto Intel Performance Libraries > Use Intel IPP and select 'Single-threaded DLL' 
+
