@@ -9,3 +9,7 @@ Build a C++ project with IPP library (v.2019) -
   a. Right click project > Properties
   b. Goto Intel Performance Libraries > Use Intel IPP and select 'Single-threaded DLL' 
 
+*Recommendation system* 
+  - co-occurence matrix (https://www.coursera.org/learn/ml-foundations/lecture/CdmdR/collaborative-filtering-people-who-bought-this-also-bought)
+  - count-min-sketch algo (https://www.youtube.com/watch?v=ibxXO-b14j4)
+
