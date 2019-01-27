@@ -2,7 +2,8 @@
 Regex search includes including files starting with 'ipp'- #include\s["<]ipp
 
 *Dumpbin*
-List dependencies of a DLL - $ dumpbin /dependents foo.dll
+- List dependencies of a DLL - $ dumpbin /dependents foo.dll
+- List symbols of a DLL - $ dumpbin /symbols foo.dll
 
 *Intel Performance Primitives library*
 Build a C++ project with IPP library (v.2019) -
@@ -14,8 +15,28 @@ Build a C++ project with IPP library (v.2019) -
   - count-min-sketch algo (https://www.youtube.com/watch?v=ibxXO-b14j4)
 
 *C++*
-- Iterating over "const char*" is different than std::string("string") in a range-based for loop.
+- Iterating over "const char*" is different than std::string("string") in a range-based for loop. Use a reference in the range declaration.
 - asserting can be done using the 'assert' macro from cassert header.
+- Use the replace method in the algorithm header to replace chars in a string
+- Use the erase(remove(...),...) pattern to remove desired chars from string
+- A set from the set header stores unique values and derives from a tree
+- Use reserve method on a string to change its capacity.
+- Use the chrono header to use clocks to time program execution
+- Use the thread header to use threading infrastructure.
+- A string concat reserves space for the result before concat
+- implementation of a string is in - https://github.com/gcc-mirror/gcc/libstdc++-v3/include/bits/basic_string.tcc
+
+*GDB*
+- compile with g++ using the -g flag and pass exe to gdb
+- set breakpoint using b <line num> and start using s
+
+*Git*
+- git push -u origin master : needs to be done only once to setup the upstream. Once set, just git push without any args.
+- git commit --ammend --author="username <email>" : fixes last commit author info.
+
+*Bash*
+- evaluate an expression : expr 1 + 1
+- print ascii value of a char : printf "%d" "'a"
 
 *Networking*
 - Nagle's algo : solves the 'small packet problem' by accumulating bytes and sending them in a single packet instead of individual packets. e.g. telnet
@@ -24,3 +45,7 @@ Build a C++ project with IPP library (v.2019) -
 
 *Streaming*
 - Dish TV uses MPEG-4 codec with encryption for video.
+
+*DS*
+- An ADT is abstract - lists, maps, queues, etc. - and it is implemented by a concrete data structure - linked-lists, hash-maps, arrays, etc.
+- Auto sorting during insertion : use a priority queue ADT implemented using a heap data structure.
