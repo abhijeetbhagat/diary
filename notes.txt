@@ -25,10 +25,13 @@ Build a C++ project with IPP library (v.2019) -
 - Use the thread header to use threading infrastructure.
 - A string concat reserves space for the result before concat
 - implementation of a string is in - https://github.com/gcc-mirror/gcc/libstdc++-v3/include/bits/basic_string.tcc
+- use std::numeric_limits<int>::min()/max() for numeric int limits defined in the limits header
 
 *GDB*
 - compile with g++ using the -g flag and pass exe to gdb
-- set breakpoint using b <line num> and start using s
+- set breakpoint using 'b <line num>' and start using 'run'
+- 'run' means run to the first breakpoint while 'start' means run from main()
+- 'next' -> step-over, 'step' -> step-in
 
 *Git*
 - git push -u origin master : needs to be done only once to setup the upstream. Once set, just git push without any args.
@@ -37,6 +40,7 @@ Build a C++ project with IPP library (v.2019) -
 *Bash*
 - evaluate an expression : expr 1 + 1
 - print ascii value of a char : printf "%d" "'a"
+- print a-z : printf '%s' {a..z}
 
 *Networking*
 - Nagle's algo : solves the 'small packet problem' by accumulating bytes and sending them in a single packet instead of individual packets. e.g. telnet
@@ -49,3 +53,7 @@ Build a C++ project with IPP library (v.2019) -
 *DS*
 - An ADT is abstract - lists, maps, queues, etc. - and it is implemented by a concrete data structure - linked-lists, hash-maps, arrays, etc.
 - Auto sorting during insertion : use a priority queue ADT implemented using a heap data structure.
+- A priority queue can be implemented as an array which can be visualised as a balanced binary tree.
+
+*GVim*
+- Start recording by typing 'qd', then perform some actions, stop by typing 'q', '@d' to execute macro
