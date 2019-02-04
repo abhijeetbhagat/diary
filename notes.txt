@@ -26,12 +26,15 @@ Build a C++ project with IPP library (v.2019) -
 - A string concat reserves space for the result before concat
 - implementation of a string is in - https://github.com/gcc-mirror/gcc/libstdc++-v3/include/bits/basic_string.tcc
 - use std::numeric_limits<int>::min()/max() for numeric int limits defined in the limits header
+- "auto" doesn't work well will array declarations
 
 *GDB*
 - compile with g++ using the -g flag and pass exe to gdb
 - set breakpoint using 'b <line num>' and start using 'run'
 - 'run' means run to the first breakpoint while 'start' means run from main()
 - 'next' -> step-over, 'step' -> step-in
+- gdbinit contains commands to be executed during gdb startup
+- for gdb to work with python scripts for pretty printing, a python-enabled gdb must be used
 
 *Git*
 - git push -u origin master : needs to be done only once to setup the upstream. Once set, just git push without any args.
@@ -57,3 +60,8 @@ Build a C++ project with IPP library (v.2019) -
 
 *GVim*
 - Start recording by typing 'qd', then perform some actions, stop by typing 'q', '@d' to execute macro
+- s : delete char and insert mode
+- Ctl + W, x : swap current buffer with next
+
+*Windows*
+- Conemu + clink = <3
