@@ -50,6 +50,9 @@ Build a C++ project with IPP library (v.2019) -
 - Jitter : inter-arrival packet time. Solved using buffering at the receiving end.
 - A rate-limiter (throttling requests bursts for an API) can be implemented using the leaky bucket algo.
 
+*Multithreading*
+- File IO : Multithreading might increase or decrease the performance. Keep the number of threads threshold configurable. - http://www.drdobbs.com/parallel/multithreaded-file-io
+
 *Streaming*
 - Dish TV uses MPEG-4 codec with encryption for video.
 
