@@ -27,6 +27,7 @@ Build a C++ project with IPP library (v.2019) -
 - implementation of a string is in - https://github.com/gcc-mirror/gcc/libstdc++-v3/include/bits/basic_string.tcc
 - use std::numeric_limits<int>::min()/max() for numeric int limits defined in the limits header
 - "auto" doesn't work well will array declarations
+- be careful with 'a & b == c' which is incorrect due to oerator precedence (== is higher than bitwise &)
 
 *GDB*
 - compile with g++ using the -g flag and pass exe to gdb
@@ -68,3 +69,7 @@ Build a C++ project with IPP library (v.2019) -
 
 *Windows*
 - Conemu + clink = <3
+- Use Dependency Walker to see methods in a DLL
+
+*.NET*
+- Use the 'disableCommitThreadStack' flag in config file to enable/disable full thread stack committing. This can bring down memory consumption (tested on .NET 4).
