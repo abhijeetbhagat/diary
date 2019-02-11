@@ -14,6 +14,10 @@ Build a C++ project with IPP library (v.2019) -
   - co-occurence matrix (https://www.coursera.org/learn/ml-foundations/lecture/CdmdR/collaborative-filtering-people-who-bought-this-also-bought)
   - count-min-sketch algo (https://www.youtube.com/watch?v=ibxXO-b14j4)
 
+*CDN*
+- Content Delivery Network responsible for pull app content from server and delivering to the client.
+- uses stable marriage matching algorithm
+
 *C++*
 - Iterating over "const char*" is different than std::string("string") in a range-based for loop. Use a reference in the range declaration.
 - asserting can be done using the 'assert' macro from cassert header.
