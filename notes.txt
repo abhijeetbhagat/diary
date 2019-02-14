@@ -32,6 +32,7 @@ Build a C++ project with IPP library (v.2019) -
 - use std::numeric_limits<int>::min()/max() for numeric int limits defined in the limits header
 - "auto" doesn't work well will array declarations
 - be careful with 'a & b == c' which is incorrect due to oerator precedence (== is higher than bitwise &)
+- want to initialize a vector with a sequence of increasing integers? use std::iota from the numeric header
 
 *GDB*
 - compile with g++ using the -g flag and pass exe to gdb
@@ -66,6 +67,9 @@ Build a C++ project with IPP library (v.2019) -
 - Auto sorting during insertion : use a priority queue ADT implemented using a heap data structure.
 - A priority queue can be implemented as an array which can be visualised as a balanced binary tree.
 
+*Algorithms*
+- Intro to time complexity - https://www.youtube.com/watch?v=A03oI0znAoc
+
 *GVim*
 - Start recording by typing 'qd', then perform some actions, stop by typing 'q', '@d' to execute macro
 - s : delete char and insert mode
@@ -77,3 +81,6 @@ Build a C++ project with IPP library (v.2019) -
 
 *.NET*
 - Use the 'disableCommitThreadStack' flag in config file to enable/disable full thread stack committing. This can bring down memory consumption (tested on .NET 4).
+
+*SonarQube*
+- If using SonarQube version 7.2.1 with sonar-csharp-plugin-7.2.0, then use VS 2015 Update 3; it will not work otherwise
