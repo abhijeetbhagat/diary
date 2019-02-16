@@ -33,6 +33,12 @@ Build a C++ project with IPP library (v.2019) -
 - "auto" doesn't work well will array declarations
 - be careful with 'a & b == c' which is incorrect due to oerator precedence (== is higher than bitwise &)
 - want to initialize a vector with a sequence of increasing integers? use std::iota from the numeric header
+- use 'equal' from algorithm to compare collections
+- convert a number to its binary representation by using std::bitset<32> from bitset header
+
+*Bit twiddling*
+- check if even : n&1 == 0
+- check if power of 2 : n&(n-1) == 0
 
 *GDB*
 - compile with g++ using the -g flag and pass exe to gdb
@@ -50,6 +56,9 @@ Build a C++ project with IPP library (v.2019) -
 - evaluate an expression : expr 1 + 1
 - print ascii value of a char : printf "%d" "'a"
 - print a-z : printf '%s' {a..z}
+
+*Powershell*
+- exponentiation: [math]::pow(2, 3)
 
 *Networking*
 - Nagle's algo : solves the 'small packet problem' by accumulating bytes and sending them in a single packet instead of individual packets. e.g. telnet
@@ -69,6 +78,11 @@ Build a C++ project with IPP library (v.2019) -
 
 *Algorithms*
 - Intro to time complexity - https://www.youtube.com/watch?v=A03oI0znAoc
+- Greedy algorithms used to solve optimization problems - problems that required either minimum or maximum result.
+ - Optimization problems can be solved using :
+    - Greedy method
+    - Dynamic programming
+    - Branch and bound
 
 *GVim*
 - Start recording by typing 'qd', then perform some actions, stop by typing 'q', '@d' to execute macro
@@ -84,3 +98,8 @@ Build a C++ project with IPP library (v.2019) -
 
 *SonarQube*
 - If using SonarQube version 7.2.1 with sonar-csharp-plugin-7.2.0, then use VS 2015 Update 3; it will not work otherwise
+
+*Maths*
+- AP : difference between two consecutive numbers in a series is same e.g. 1,5,9,13,...
+- GP : ratio      between two consecutive numbers in a series is same e.g. 1,2,4,8,16,..
+- HP : reciprocal of terms in a series is in API e.g. 1/3,1/5,1/7,1/9,...
