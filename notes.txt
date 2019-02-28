@@ -103,3 +103,34 @@ Build a C++ project with IPP library (v.2019) -
 - AP : difference between two consecutive numbers in a series is same e.g. 1,5,9,13,...
 - GP : ratio      between two consecutive numbers in a series is same e.g. 1,2,4,8,16,..
 - HP : reciprocal of terms in a series is in API e.g. 1/3,1/5,1/7,1/9,...
+
+*TLS*
+- SSL is a deprecated ancestor of TLS
+- provides privacy (using symmetric key cryptography), integrity (using message authentication code) and authentication (using public key cryptography) on the communication channel
+- Hanshake protocol (TLS 1.2):
+  1. Client sends ClientHello - sends protocol version, random data, list of cipher suites, list of compression methods
+  2. Server sends ServerHello - sends selected protocol version, random data, selected cipher, selected compression method
+  3. Server sends certificate (containing public key) to client
+  4. Server generates public-private keys pair 
+  5. Server sends public key (from above step) to client 
+  6. Server sends HelloDone indicating end of handshake from its side
+  7. Client generates public-private keys pair 
+  8. Client sends public key (from above step) to server 
+  9. Client calculates pre-master key and master key (which will be the same as server's master key when it calculates it)
+  10. Client sends ChangeCipherSpec - meaning all the messages sent henceforth will be encrypted using its master key
+  11. Client sends HandshakeFinished - calculates verification data, encrypts it using its master key, and sends encrypted data to server
+  12. Server calculates pre-master key and master key (which is the same as client's master key) 
+  13. Server sends ChangeChipherSpec - meaning all the messages sent henceforth will be encrypted using its master key
+  14. Server sends HandshakeFinished - calculates verification data, encrypts it using its master key, and sends encrypted data to client
+  15. Client can now data encrypted using its master key to the server
+  16. Server can now decrypt the encrypted data using its master key and reply to the client by encrypting its response using its master key which the client can decrypt using its master key
+
+*VPN*
+- This allows data to be encrypted from the VPN app, sent to the VPN server and from there, to the destination (hence, the receiver sees the traffic coming from the VPN server and not the originator's computer).
+- Protocols used in VPN:
+  - PPTP (Point to point tunneling protocol)
+  - L2TP/IPSec (Layer 2 Tunneling protocol)
+  - SSTP (Secure Sockets Tunneling protocol) : uses TLS
+  - IKEv2 (Internet key exchange version 2)
+  - OpenVPN : open source, based on TLS
+- AES 128 bits / 256 bits should be used as the encryption algorithm
