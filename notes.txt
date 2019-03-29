@@ -70,6 +70,29 @@ Build a C++ project with IPP library (v.2019) -
 
 *Streaming*
 - Dish TV uses MPEG-4 codec with encryption for video.
+- RTP
+  A video frame can be divided into multiple packets. For e.g. an IDR frame (also called I Frame) can be divided into multiple packets.
+  interleaving : resequencing of codec frames so that packet loss appears distributed
+  RFC 3984/6184 : RTP payload format for H264
+  RFC 3550 : RTP version 2 data transfer protocol, RT Control protocol
+  RFC 3551 : RTP profile for Audio Video Conferencing with minimal session control
+
+  Profiles : Real-time audio and video conferencing and communication applications that use the Real-time Transport Protocol (RTP) employ a standardized description format (Session Description Protocol, SDP) to describe the media streams carried in a multi-media session.
+             This description format specifies the technical parameters of the media streams. Such a set of RTP parameters of the media stream and its compression or encoding methods is known as a media profile, or RTP audio video profile (RTP/AVP). 
+            Each profile is identified by a standardized payload type identifier (RFC 3551 and others).
+
+  VCL vs NAL: Source -> VCL (Encode) -> NAL -> Packet -> Network
+              Network -> Packet -> NAL -> Frame -> VCL (Decode) -> Render
+            -  VCL contains compressed video data in terms of slice. One video frame can be split into one or more slices. 
+               Slice contains one or more Macro blocks (16x16 pixel block) in compressed form, following the standard syntax.
+
+  RTP timestamp : used for synchronization and calculating jitter
+  RTP sequence number : used to find out how much packet loss occuring
+
+  Three ports : 554 for RTSP commands + 1 port for RTP data + 1 port for RTCP data
+
+- RTCP
+  All the participants in a conference periodically send a receiver report which tells the number of packets sent, number of packets lost, jitter and timestamps to calculate RTT for packets.
 
 *DS*
 - An ADT is abstract - lists, maps, queues, etc. - and it is implemented by a concrete data structure - linked-lists, hash-maps, arrays, etc.
