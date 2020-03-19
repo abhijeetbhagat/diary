@@ -99,6 +99,14 @@ Build a C++ project with IPP library (v.2019) -
 - Auto sorting during insertion : use a priority queue ADT implemented using a heap data structure.
 - A priority queue can be implemented as an array which can be visualised as a balanced binary tree.
 
+*Trees*
+- Complete binary tree: All the levels are full except the last which has leaves to the left
+- Full binary tree: A node has either 0 or 2 nodes
+- Heap: A complete binary tree where a node at a level has a lesser/greater (min/max) value than all the children
+- A min/max heap can be contructed by sorting an array. Time complexity using
+  the best sorting algo is O(nlogn). We can do better by using an O(n)
+algorithm.
+
 *Algorithms*
 - Intro to time complexity - https://www.youtube.com/watch?v=A03oI0znAoc
 - Greedy algorithms used to solve optimization problems - problems that required either minimum or maximum result.
