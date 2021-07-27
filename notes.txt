@@ -64,6 +64,7 @@ Build a C++ project with IPP library (v.2019) -
 - Nagle's algo : solves the 'small packet problem' by accumulating bytes and sending them in a single packet instead of individual packets. e.g. telnet
 - Jitter : inter-arrival packet time. Solved using buffering at the receiving end.
 - A rate-limiter (throttling requests bursts for an API) can be implemented using the leaky bucket algo.
+- To scan ports on a machine, use the nmap utility (both Windows and Linux)
 
 *Multithreading*
 - File IO : Multithreading might increase or decrease the performance. Keep the number of threads threshold configurable. - http://www.drdobbs.com/parallel/multithreaded-file-io
@@ -76,6 +77,23 @@ Build a C++ project with IPP library (v.2019) -
   RFC 3984/6184 : RTP payload format for H264
   RFC 3550 : RTP version 2 data transfer protocol, RT Control protocol
   RFC 3551 : RTP profile for Audio Video Conferencing with minimal session control
+
+  An H264 RTP payload can be parsed for getting the frame-type (I, P, etc.) and other info by following the T-REC-H.264-201610 doc.
+  In order to find the frame type, first parse the first byte of the payload which follows right after the RTP header.
+  The first byte tells what the NAL type is. Now lookup in this table how to further parse the payload -
+
+  nal_unit_type |Content of NAL unit and RBSP syntax structure |   C    |Annex A NAL unit type class |Annex G and Annex H NAL unit type class |Annex I and Annex J NAL unit type class 
+  0 	        Unspecified 						 non-VCL 		      non-VCL 			               non-VCL
+  1 		Coded slice of a non-IDR picture 
+  		slice_layer_without_partitioning_rbsp( )        2, 3, 4  VCL 			      VCL 				       VCL
+  2 		Coded slice data partition A 
+  		slice_data_partition_a_layer_rbsp( ) 		2 	 VCL 			      not applicable 			       not applicable
+  ...
+
+  If the NAL type is 1, that means 'slice_layer_without_partitioning_rbsp()' method should be used to further parse the payload.
+  The definition of this method is given in the same document.
+
+
 
   Profiles : Real-time audio and video conferencing and communication applications that use the Real-time Transport Protocol (RTP) employ a standardized description format (Session Description Protocol, SDP) to describe the media streams carried in a multi-media session.
              This description format specifies the technical parameters of the media streams. Such a set of RTP parameters of the media stream and its compression or encoding methods is known as a media profile, or RTP audio video profile (RTP/AVP). 
@@ -93,6 +111,31 @@ Build a C++ project with IPP library (v.2019) -
 
 - RTCP
   All the participants in a conference periodically send a receiver report which tells the number of packets sent, number of packets lost, jitter and timestamps to calculate RTT for packets.
+
+- RTSP
+  There are different verbs (commands) to initiate a connection with the RTSP server
+  a. DESCRIBE: returns the SDP (Session Description Protocol) describing all the tracks under a given url.
+  b. SETUP: tell which tracks we want to stream (audio, video)
+  c. PLAY: starts the streams
+  d. PAUSE: pauses the streams
+  e. TEARDOWN: closes the streams
+
+  The SDP tells information about the streams - payload types (96, 97, etc.), payload names (mpeg4-generic, H264, etc.)
+  RTP payload types and the respective RFCs are listed here - https://en.wikipedia.org/wiki/RTP_payload_formats
+  For e.g., in the SDP, the following line - a=rtpmap:96 mpeg4-generic/12000/2 - tells that the payload type is dynamic RTP 96
+  and the payload name is mpeg4-generic. Going to the above wiki link, this is what the payload type means -
+
+  Payload type		Payload name	Type		Clock rate	Description		    RFC
+  dynamic (or profile)	mpeg4-generic	audio/video	90000 or other	MPEG-4 Elementary Streams   RFC 3640
+  
+  Since the SDP line is for the audio track, in order to parse the audio RTP payloads, we can follow RFC 3640.
+  Similarly, the following line - a=rtpmap:97 H264/90000 - in the SDP tells that the payload type is dynamic RTP 97
+  and the payload name is H264. In the above wiki link, this is entry for H264 - 
+
+  Payload type		Payload name	Type		Clock rate	Description		      RFC
+  dynamic (or profile)	H264 AVC	video		90000		H.264 video (MPEG-4 Part 10   RFC 6184
+
+  We can follow RFC 6184 to parse the video RTP payloads.
 
 *DS*
 - An ADT is abstract - lists, maps, queues, etc. - and it is implemented by a concrete data structure - linked-lists, hash-maps, arrays, etc.
